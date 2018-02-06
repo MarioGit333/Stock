@@ -3,10 +3,12 @@ package stock;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+<<<<<<< HEAD
 
 /*
    nombre de la BBDD: controlStock
@@ -24,6 +26,10 @@ public class Stock {
 
     
     static Scanner entrada = new Scanner(System.in);
+=======
+public class Stock {
+
+>>>>>>> a7eb3798d3f84c77f3eec3a44b3cea4e426f52a7
     public static void main(String[] args) {
         try {
             String opcion = "";
@@ -46,21 +52,45 @@ public class Stock {
                         break;
                     case "2":
                         break;
+<<<<<<< HEAD
                     case "3":
                         break;
+=======
+                        
+>>>>>>> a7eb3798d3f84c77f3eec3a44b3cea4e426f52a7
                 }
 
             } while (!opcion.equals("s"));
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Stock.class.getName()).log(Level.SEVERE, null, ex);
+            
         } catch (SQLException ex) {
-            Logger.getLogger(Stock.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
     }
+
+    public static void anadirProducto(Connection con, String cod,
+            String autor, String titulo) {
+        try {
+            Statement statement = con.createStatement();
+            String anhadirLibro = "INSERT INTO stock (cod, autor, titulo) "
+                    + " VALUES ('" + cod
+                    + "','" + autor
+                    + "','" + titulo
+                    + "');";
+            statement.executeUpdate(anhadirLibro);
+            System.out.println("Libro guardado satisfactoriamente.");
+            statement.close();
+        } catch (SQLException e) {
+            System.out.println("Error: No se ha podido guardar el libro.");
+        }
+    }
+<<<<<<< HEAD
     
     private static void anyadirProducto(){
        
         
     } 
+=======
+>>>>>>> a7eb3798d3f84c77f3eec3a44b3cea4e426f52a7
 
 }
