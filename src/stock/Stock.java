@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /*
@@ -24,24 +26,35 @@ public class Stock {
     static Scanner entrada = new Scanner(System.in);
 
     public static void main(String[] args) {
+        String opcion = "";
         try {
-            String opcion = "";
-
             Class.forName("org.postgresql.Driver");
 
             String url = "jdbc:postgresql://localhost:5432/controlStock";
             String usuario = "postgres";
-            String password = "admin";
+            String password = "1234";
 
             Connection con = DriverManager.getConnection(url, usuario, password);
 
             do {
-                System.out.println("1.A�adir producto");
+                System.out.println("1.Añadir producto");
                 System.out.println("2.Buscar por nombre");
                 System.out.println("S.Salir");
                 opcion = entrada.nextLine();
                 switch (opcion) {
                     case "1":
+                        System.out.println("Referencia: ");
+                        String referencia = entrada.nextLine();
+                        System.out.println("Nombre: ");
+                        String nombre = entrada.nextLine();
+                        System.out.println("Precio de compra: ");
+                        double precioCompra = Double.parseDouble(entrada.nextLine());
+                        System.out.println("Precio de venta: ");
+                        double precioVenta = Double.parseDouble(entrada.nextLine());
+                        System.out.println("Stock: ");
+                        int stock = Integer.parseInt(entrada.nextLine());
+                        anadirProducto(con, referencia, nombre, precioCompra,
+                                precioVenta, stock);
                         break;
                     case "2":
                         break;
@@ -52,26 +65,29 @@ public class Stock {
 
             } while (!opcion.equals("s"));
         } catch (ClassNotFoundException ex) {
-
+            Logger.getLogger(Stock.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-
+            Logger.getLogger(Stock.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    public static void anadirProducto(Connection con, String cod,
-            String autor, String titulo) {
+    public static void anadirProducto(Connection con, String referencia,
+            String nombre, double precioCompra, double precioVenta, int stock) {
         try {
             Statement statement = con.createStatement();
-            String anhadirLibro = "INSERT INTO stock (cod, autor, titulo) "
-                    + " VALUES ('" + cod
-                    + "','" + autor
-                    + "','" + titulo
-                    + "');";
-            statement.executeUpdate(anhadirLibro);
+            String producto = "INSERT INTO stock (referencia, nombre, "
+                    + "precioCompra, precioVenta, stock) "
+                    + " VALUES ('" + referencia
+                    + "','" + nombre
+                    + "'," + precioCompra
+                    + "," + precioVenta
+                    + "," + stock
+                    + ");";
+            statement.executeUpdate(producto);
             System.out.println("Producto guardado.");
             statement.close();
         } catch (SQLException e) {
-            System.out.println("Error: No se ha podido guardar el progucto.");
+            System.out.println("Error: No se ha podido guardar el producto.");
         }
     }
 }
