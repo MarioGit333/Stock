@@ -54,10 +54,10 @@ public class Stock {
                     + "','" + titulo
                     + "');";
             statement.executeUpdate(anhadirLibro);
-            System.out.println("Libro guardado satisfactoriamente.");
+            System.out.println("Producto guardado.");
             statement.close();
         } catch (SQLException e) {
-            System.out.println("Error: No se ha podido guardar el libro.");
+            System.out.println("Error: No se ha podido guardar el progucto.");
         }
     }
 
