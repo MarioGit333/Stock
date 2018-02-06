@@ -43,18 +43,7 @@ public class Stock {
                 opcion = entrada.nextLine();
                 switch (opcion) {
                     case "1":
-                        System.out.println("Referencia: ");
-                        String referencia = entrada.nextLine();
-                        System.out.println("Nombre: ");
-                        String nombre = entrada.nextLine();
-                        System.out.println("Precio de compra: ");
-                        double precioCompra = Double.parseDouble(entrada.nextLine());
-                        System.out.println("Precio de venta: ");
-                        double precioVenta = Double.parseDouble(entrada.nextLine());
-                        System.out.println("Stock: ");
-                        int stock = Integer.parseInt(entrada.nextLine());
-                        anadirProducto(con, referencia, nombre, precioCompra,
-                                precioVenta, stock);
+                        anadirProducto(con);
                         break;
                     case "2":
                         break;
@@ -71,8 +60,17 @@ public class Stock {
         }
     }
 
-    public static void anadirProducto(Connection con, String referencia,
-            String nombre, double precioCompra, double precioVenta, int stock) {
+    public static void anadirProducto(Connection con) {
+        System.out.println("Referencia: ");
+        String referencia = entrada.nextLine();
+        System.out.println("Nombre: ");
+        String nombre = entrada.nextLine();
+        System.out.println("Precio de compra: ");
+        double precioCompra = Double.parseDouble(entrada.nextLine());
+        System.out.println("Precio de venta: ");
+        double precioVenta = Double.parseDouble(entrada.nextLine());
+        System.out.println("Stock: ");
+        int stock = Integer.parseInt(entrada.nextLine());
         try {
             Statement statement = con.createStatement();
             String producto = "INSERT INTO stock (referencia, nombre, "
