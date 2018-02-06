@@ -21,7 +21,7 @@ import java.util.logging.Logger;
     );
 
  */
-public class Stock {
+public class ControlStock {
 
     static Scanner entrada = new Scanner(System.in);
 
@@ -54,9 +54,9 @@ public class Stock {
 
             } while (!opcion.equals("s"));
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Stock.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControlStock.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(Stock.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControlStock.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
